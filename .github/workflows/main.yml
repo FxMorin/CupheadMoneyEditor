@@ -20,13 +20,13 @@ jobs:
         pip install pyinstaller
     - name: build with pyinstaller
       run: |
-        pyinstaller --noconsole --onefile -F --icon="icon.ico" ScrapMechanicSeedTool.py
+        pyinstaller --noconsole --onefile -F CupheadMoneyEditor.py
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: D:\a\ScrapMechanicSeedTool\ScrapMechanicSeedTool\dist\ScrapMechanicSeedTool.exe
-        asset_name: ScrapMechanicSeedTool.exe
+        file: D:\a\CupheadMoneyEditor\CupheadMoneyEditor\dist\CupheadMoneyEditor.exe
+        asset_name: CupheadMoneyEditor.exe
         release_name: Automatic Release
         tag: ${{ github.ref }}
         overwrite: true
