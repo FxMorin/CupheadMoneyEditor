@@ -12,7 +12,7 @@ m=tkinter.Tk(screenName='CupheadMoneyEditor',  baseName='CHME',  className='chme
 m.title('Cuphead Money Editor by FX')
 
 #Entry where user enters new value
-Label(m, text='Money to use:').grid(row=1,padx=2)
+Label(m, text='Money to use: (0-44)').grid(row=1,padx=2)
 
 #Add textbox for new value
 valueM = Entry(m)
@@ -28,8 +28,9 @@ def getSaveFile():
 def modifyMoney():
 	with open(getSaveFile(), 'r+') as f:
 		data = json.load(f)
-		data['inventories']['playerOne']['money'] = int(valueM.get())
-		data['inventories']['playerTwo']['money'] = int(valueM.get())
+		value = max(0, min(int(valueM.get()), 44))
+		data['inventories']['playerOne']['money'] = value
+		data['inventories']['playerTwo']['money'] = value
 		f.seek(0)
 		json.dump(data, f, indent=4)
 		f.truncate()
